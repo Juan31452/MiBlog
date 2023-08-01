@@ -19,10 +19,10 @@ app.get("/usuario/:id", (req, res) => {
 
 // Middleware para manejar errores 404 (Not Found)
 app.use((req, res, next) => {
-  const error = new Error('Not Found');
+  const error = new Error(`La ruta '${req.originalUrl}' no fue encontrada en el servidor.`);
   error.status = 404;
   next(error);
-}); 
+});
 
 // Middleware de manejo de errores
 app.use((err, req, res, next) => {
