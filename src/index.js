@@ -1,4 +1,5 @@
 import app from "./app.js"
+
 const port = 3000;
 
 //http://localhost:3000
@@ -34,6 +35,7 @@ app.use((err, req, res, next) => {
     },
   });
 });
+
 
 // Iniciar el servidor y escuchar en el puerto especificado
 app.listen(port, () => {
