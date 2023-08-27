@@ -2,10 +2,18 @@
 const mongoose = require('mongoose');
 
 const comentariosSchema = new mongoose.Schema({
-  entradaId: mongoose.Schema.Types.ObjectId,
-  autor: String,
-  contenido: String,
-  
+  autor: {
+    type: String,
+    required: true
+  },
+  contenido: {
+    type: String,
+    required: true
+  },
+  entrada: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Entrada'
+  }
 });
 
 module.exports = mongoose.model('Comentarios', comentariosSchema);
