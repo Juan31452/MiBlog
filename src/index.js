@@ -1,13 +1,23 @@
 import app from "./app.js"
+import mongoConnect from './config/Database.js';
+import dotenv from "dotenv";
 
-const port = 3000;
+// Cargar las variables de entorno desde el archivo .env
+dotenv.config();
+
+// puerto (obtenida desde las variables de entorno)
+const puerto = process.env.PORT || 3000; // Utiliza el puerto 3000 si no se encuentra en .env
+
+//Conexion a Mongodb
+mongoConnect();
+
 
 //http://localhost:3000
 app.get("/",(req,res) =>{
   res.send('Hola Mundo');
 });
 
-//http://localhost:3000/ruta1
+//http://localhoscomt:3000/ruta1
 app.get("/ruta1", (req, res) => {
   res.send('¡Hola desde otra ruta!');
 });
@@ -17,6 +27,8 @@ app.get("/usuario/:id", (req, res) => {
   const userId = req.params.id;
   res.send(`Hola, usuario ${userId}!`);
 });
+
+
 
 // Middleware para manejar errores 404 (Not Found)
 app.use((req, res, next) => {
@@ -38,7 +50,7 @@ app.use((err, req, res, next) => {
 
 
 // Iniciar el servidor y escuchar en el puerto especificado
-app.listen(port, () => {
-    console.log(`Conectado en el puerto:${port}`);
+app.listen(puerto, () => {
+    console.log(`Conectado en el puerto:${puerto}`);
   });
 

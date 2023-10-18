@@ -1,17 +1,18 @@
 import express from 'express';
 import morgan from 'morgan'; 
-import mongoConnect from './config/Database.js';
+import usuarioRouter from './routers/usuarios.router.js'
 
 const app = express();
 
+
 app.use(morgan('dev'));
+app.use(express.json());//que reconozca formato json
+
+//se llama rutras 
+app.use('/home',usuarioRouter);
+
 // Configuración de rutas y middlewares
-app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
-
-//Conexion a Mongodb
-mongoConnect();
 
 
 export default app
